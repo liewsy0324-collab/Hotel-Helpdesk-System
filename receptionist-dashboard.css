@@ -1,0 +1,483 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+
+    background-color: #e0e0e0;
+    position: relative;
+    isolation: isolate;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.15);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 70px;
+
+    width: calc(100% - 70px);
+
+    height: 82px;
+    background: linear-gradient(
+        to bottom,
+        rgba(251, 252, 250, 0.9) 0%,
+        rgba(251, 252, 250, 0.65) 50%,
+        rgba(238, 238, 238, 0.4) 100%
+    );
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border-bottom: 1px solid rgba(100, 100, 100, 0.15);
+
+
+    box-sizing: border-box;
+    
+    z-index: 1;
+    pointer-events: auto;
+
+    transition: left 0.3s ease, width 0.3s ease;
+}
+
+.page-title {
+    font-family: Helvetica;
+    font-size: 24px;
+    font-weight: bold;
+    position: fixed;
+    top: 30px;
+    left: 89px;
+    z-index: 2;
+    text-align: center;
+    
+    transition: left 0.3s ease;
+
+}
+
+body:has(.sidebar.expanded) .page-title {
+    left: 270px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 100vh;
+    background-color: #FFFFFF;
+    padding: 20px 10px;
+    overflow: visible;
+    transition: width 0.3s ease;
+    box-sizing: border-box;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    z-index: 4;
+    
+}
+
+.sidebar.expanded {
+    width: 250px;
+}
+
+
+
+
+body:has(.sidebar.expanded) .top-bar {
+    left: 250px;
+    width: calc(100% - 250px);
+}
+
+
+.sidebar.expanded .menu-option span {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.1s;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hamburger-button {
+    position: relative;
+    width: calc(100% + 20px);
+    height: 44px;
+    font-size: 26px;
+    color: #000000;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 19px;
+    margin: 0px 0 16px -10px;
+    border: none;
+    border-radius: 0px;
+    background-color: transparent;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+
+
+.hamburger-button:hover {
+    background-color: #e0e0e0;
+    border-radius: 5px;
+}
+
+
+
+.hamburger-button svg {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+.menu-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 12px 0px;
+    box-sizing: border-box;
+    color: #000000;
+    text-decoration: none;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 5px;
+    white-space: nowrap;
+
+    margin-left: -10px;
+    width: calc(100% + 20px);
+    padding-left: 10px;
+    padding-right: 10px;
+
+    position: relative;
+}
+
+
+.sidebar:not(.expanded) .menu-option {
+    justify-content: flex-start;
+    gap: 0;
+    padding-left: 9px;
+}
+
+
+
+.menu-option svg {
+    flex: 0 0 44px;
+    width: 24px;
+    height: 24px;
+}
+
+.menu-option span{
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease;
+}
+
+.selection-indicator {
+    margin-left: auto;
+}
+
+.menu-option:hover,
+.menu-option.active {
+    background-color: #e0e0e0;
+}
+
+.create-ticket-button {
+    position: fixed;
+    top: 85px;
+    left: 75px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 14px;
+    
+    border-radius: 6px;
+
+    background-color: #cbcbcb;
+    color: #000000;
+    border: 1px solid rgba(136, 136, 136, 0.08);
+    font-family: Helvetica;
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+    z-index: 3;
+    transition: left 0.3s ease;
+}
+
+.create-ticket-button svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.sidebar.expanded ~ .create-ticket-button {
+    left: 255px;
+}
+
+.main-content {
+    margin-left: 70px;
+    width: calc(100% - 70px);
+    box-sizing: border-box;
+    min-width: 0;
+    transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+.sidebar.expanded ~ .main-content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+}
+
+.create-ticket-button:hover{
+    opacity: 0.7;
+}
+
+
+
+.ticket-panel {
+    position: fixed;
+    top: 130px;
+    left: 75px;
+    right: 6px;
+    bottom: 6px;
+
+    overflow: auto;
+    padding: 20px;
+    box-sizing: border-box;
+
+    background-color: #FFFFFF;
+    transition: background-color 0.3s ease;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+    z-index: 3;
+    font-family: Helvetica;
+
+    transition: left 0.3s ease, background-color 0.3s ease;
+}
+
+.ticket-panel h2 {
+    margin-bottom: 16px;
+    font-size: 20px;
+}
+
+.ticket-panel[hidden] {
+    display: none;
+}
+
+body:has(.sidebar.expanded) .ticket-panel {
+    left: 255px;
+}
+
+.maintenance-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.maintenance-table th,
+.maintenance-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #dddddd;
+}
+
+
+
+
+
+#ticket-form-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    max-width: 90%;
+    padding: 25px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+#ticket-form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#ticket-form-container h2 {
+    margin-top: 0;
+}
+
+#ticket-form-container input,
+#ticket-form-container textarea,
+#ticket-form-container select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+#ticket-form-container textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+#ticket-form-container button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#ticket-form-container button[type="submit"] {
+    background-color: #2563eb;
+    color: white;
+}
+
+#ticket-form-container button[type="button"] {
+    background-color: #e5e7eb;
+    color: #111827;
+}
+
+/*20-10-2026*/
+
+
+
+.logout-button {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+    padding: 0;
+
+    border: none;
+    border-radius: 5px;
+    background: transparent;
+    color: #000000;
+
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.logout-button:hover {
+    background-color: #e0e0e0;
+}
+
+.logout-button svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+
+}
+
+/*20-10-2026*/
+
+/* Sidebar tooltip: appear on the right */
+
+.sidebar:not(.expanded) .menu-option::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 8px);
+    transform: translateY(-50%);
+
+    padding: 6px 10px;
+    border-radius: 4px;
+    background-color: #333333;
+    color: #ffffff;
+
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    white-space: nowrap;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.sidebar:not(.expanded) .menu-option:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sidebar.expanded .menu-option::after {
+    display: none;
+}
+
+
+/* Logout tooltip: appear below */
+
+.logout-button::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+
+    padding: 6px 10px;
+    border-radius: 4px;
+    background-color: #333333;
+    color: #ffffff;
+
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    white-space: nowrap;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.logout-button:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+
+
+
+
+
+
+
+
+

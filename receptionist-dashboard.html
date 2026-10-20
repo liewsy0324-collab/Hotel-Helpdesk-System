@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receptionist Dashboard</title>
+
+    <link rel="stylesheet" href="receptionist-dashboard.css">
+</head>
+
+<body>
+
+
+    <!--20-10-2026-->
+
+    <header class="top-bar">
+    <button type="button" 
+            class="logout-button" 
+            id="logout-button"
+            aria-label="Logout" 
+            data-tooltip="Logout">
+
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="24"
+             height="24"
+             fill="currentColor"
+             viewBox="0 0 24 24">
+
+            <path d="M15 11H8v2h7v4l6-5-6-5z"></path>
+            <path d="M5 21h7v-2H5V5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2"></path>
+
+        </svg>
+
+    </button>
+</header>
+
+        <!--20-10-2026-->
+
+    <h1 class="page-title">Receptionist Dashboard</h1>
+
+   <aside class="sidebar" id="sidebar">
+
+        <button class="hamburger-button" id="hamburger-button" type="button">
+
+           <svg  xmlns="http://www.w3.org/2000/svg" 
+            width="24" 
+            height="24"  
+            fill="currentColor" 
+            viewBox="0 0 24 24" >
+
+            <path d="M3 5h18v2H3zm0 6h18v2H3zm0 6h18v2H3z"></path>
+
+            </svg>
+
+        </button>
+
+       
+        <nav class="sidebar-menu">
+
+            <a href="#" 
+            class="menu-option" 
+            data-title="Maintenance Records"
+            data-tooltip="Maintenance Records">
+
+
+                    <svg  xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"  
+                        fill="currentColor"
+                        viewBox="0 0 24 24" >
+                        <path d="M7 10h10v2H7zm0 4h7v2H7z"></path><path d="M19 3h-2c0-.55-.45-1-1-1H8c-.55 0-1 .45-1 1H5c-1.1 0-2 .9-2 2v15c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m0 17H5V5h2v2h10V5h2z"></path>
+                    </svg>
+                
+                <span>Maintenance Records</span>
+        
+            </a>
+
+            <a href="#" 
+            class="menu-option" 
+            data-title="Case Library"
+            data-tooltip="Case Library">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="currentColor"
+                        viewBox="0 0 24 24">
+                        <path d="M9 3h2v18H9zm11.71 17.23-3.8-8.15-3.81-8.16-.9.42-.91.43 3.8 8.15 3.81 8.16.9-.42zM6 3h2v18H6zM3 3h2v18H3z"></path>
+                    </svg>
+
+                <span>Case Library</span>
+
+            </a>
+
+
+
+            <a href="#" 
+            class="menu-option" 
+            data-title="Unassigned Tickets"
+            data-tooltip="Unassigned Tickets">
+
+                    <svg  xmlns="http://www.w3.org/2000/svg" 
+                        width="24"  
+                        height="24"  
+                        fill="currentColor" 
+                        viewBox="0 0 24 24" >
+                        <path d="M19.96 8.52c.02-.17.04-.35.04-.52 0-2.38-2.14-4.29-4.52-3.96C14.79 2.81 13.47 2 12 2s-2.79.8-3.48 2.04C6.14 3.72 4 5.63 4 8c0 .17.01.35.04.52C2.81 9.21 2 10.53 2 12s.8 2.79 2.04 3.48c-.02.17-.04.35-.04.52 0 2.38 2.14 4.29 4.52 3.96C9.21 21.19 10.53 22 12 22s2.79-.8 3.48-2.04C17.86 20.28 20 18.37 20 16c0-.17-.01-.35-.04-.52C21.19 14.79 22 13.47 22 12s-.8-2.79-2.04-3.48m-1.44 5.4-1.1.29.43 1.05c.09.23.14.48.14.73 0 1.1-.9 2-2 2-.25 0-.5-.05-.73-.15l-1.05-.43-.29 1.1c-.23.87-1.02 1.48-1.92 1.48s-1.69-.61-1.92-1.48l-.29-1.1-1.05.43c-.23.09-.48.15-.73.15-1.1 0-2-.9-2-2 0-.25.05-.5.14-.73l.43-1.05-1.1-.29C4.61 13.69 4 12.9 4 12s.61-1.69 1.48-1.92l1.1-.29-.43-1.05c-.09-.23-.14-.48-.14-.73 0-1.1.9-2 2-2 .25 0 .5.05.73.15l1.05.43.29-1.1c.23-.87 1.02-1.48 1.92-1.48s1.69.61 1.92 1.48l.29 1.1 1.05-.43c.23-.09.48-.15.73-.15 1.1 0 2 .9 2 2 0 .25-.05.5-.14.73l-.43 1.05 1.1.29C19.39 10.31 20 11.1 20 12s-.61 1.69-1.48 1.92"></path><path d="M11 8h2v4.5h-2zm0 6h2v2h-2z"></path>
+                    </svg>          
+
+            <span>Unassigned Tickets</span>
+            
+            </a>
+
+
+
+            <a href="#" 
+            class="menu-option" 
+            data-title="Pending Tickets"
+            data-tooltip="Pending Tickets">
+
+                    <svg  xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"  
+                        fill="currentColor" 
+                        viewBox="0 0 24 24" >
+                    <path d="M4.88 8.42 3.1 7.5a10 10 0 0 0-.98 2.95l1.97.32c.13-.81.39-1.6.78-2.35Zm-2.76 5.14c.17 1.02.5 2.01.98 2.94l1.78-.92c-.38-.74-.65-1.53-.78-2.35l-1.97.32ZM4.92 19c.73.74 1.57 1.36 2.48 1.85l.94-1.77c-.73-.39-1.4-.89-1.99-1.49L4.93 19ZM8.33 4.92l-.94-1.77C6.48 3.64 5.64 4.26 4.91 5l1.42 1.41c.59-.6 1.26-1.1 1.99-1.49ZM12 2c-.56 0-1.12.05-1.67.14l.34 1.97c.44-.08.88-.11 1.32-.11 4.34 0 8 3.66 8 8s-3.66 8-8 8c-.44 0-.89-.04-1.32-.11l-.34 1.97c.55.1 1.11.14 1.67.14 5.42 0 10-4.58 10-10S17.42 2 12 2"></path><path d="M11 7v6h6v-2h-4V7z"></path>
+                    </svg>
+
+                <span>Pending Tickets</span>
+            
+             </a>
+
+
+            <a href="#" 
+            class="menu-option" 
+            data-title="Assigned Tickets"
+            data-tooltip="Assigned Tickets">
+
+                <svg  xmlns="http://www.w3.org/2000/svg" 
+                    width="24" 
+                    height="24"  
+                    fill="currentColor" 
+                    viewBox="0 0 24 24" >
+                <path d="M19.96 8.52c.02-.17.04-.35.04-.52 0-2.38-2.14-4.29-4.52-3.96C14.79 2.81 13.47 2 12 2s-2.79.8-3.48 2.04C6.14 3.71 4 5.63 4 8c0 .17.01.35.04.52C2.81 9.21 2 10.53 2 12s.8 2.79 2.04 3.48c-.02.17-.04.35-.04.52 0 2.38 2.14 4.28 4.52 3.96C9.21 21.19 10.53 22 12 22s2.79-.8 3.48-2.04C17.86 20.28 20 18.37 20 16c0-.17-.01-.35-.04-.52C21.19 14.79 22 13.47 22 12s-.8-2.79-2.04-3.48m-1.44 5.4-1.1.29.43 1.05c.09.23.14.48.14.73 0 1.1-.9 2-2 2-.25 0-.5-.05-.73-.15l-1.05-.43-.29 1.1c-.23.87-1.02 1.48-1.92 1.48s-1.69-.61-1.92-1.48l-.29-1.1-1.05.43c-.23.09-.48.15-.73.15-1.1 0-2-.9-2-2 0-.25.05-.5.14-.73l.43-1.05-1.1-.29C4.61 13.69 4 12.9 4 12s.61-1.69 1.48-1.92l1.1-.29-.43-1.05c-.09-.23-.14-.48-.14-.73 0-1.1.9-2 2-2 .25 0 .5.05.73.15l1.05.43.29-1.1c.23-.87 1.02-1.48 1.92-1.48s1.69.61 1.92 1.48l.29 1.1 1.05-.43c.23-.09.48-.15.73-.15 1.1 0 2 .9 2 2 0 .25-.05.5-.14.73l-.43 1.05 1.1.29C19.39 10.31 20 11.1 20 12s-.61 1.69-1.48 1.92"></path><path d="m11 12.59-1.29-1.3-1.42 1.42 2.71 2.7 4.74-4.7-1.41-1.42z"></path>
+                </svg>
+
+                <span>Assigned Tickets</span>
+
+            </a>
+
+
+            <a href="#" 
+            class="menu-option" 
+            data-title="In Progress"
+            data-tooltip="In Progress">
+
+                <svg  xmlns="http://www.w3.org/2000/svg" 
+                    width="24" 
+                    height="24"  
+                    fill="currentColor" 
+                    viewBox="0 0 24 24" >
+                <path d="M13 7h-2V2h2zm0 15h-2v-5h2zm9-9h-5v-2h5zM7 13H2v-2h5zm9.24-3.83-.7-.71-.71-.7 1.77-1.77 1.76-1.77.71.71.71.71-1.77 1.76zM5.64 19.78l-.71-.71-.71-.71 1.77-1.76 1.77-1.77.7.71.71.7-1.77 1.77zm12.72 0-1.76-1.77-1.77-1.77.71-.7.7-.71 1.77 1.77 1.77 1.76-.71.71zM7.76 9.17 5.99 7.4 4.22 5.64l.71-.71.71-.71L7.4 5.99l1.77 1.77-.71.7z"></path>
+                </svg>
+                
+                <span>In Progress</span>
+
+            </a>       
+
+            <a href="#" 
+            class="menu-option" 
+            data-title="Resolved"
+            data-tooltip="Resolved">
+                
+                    <svg  xmlns="http://www.w3.org/2000/svg" 
+                        width="24" 
+                        height="24"  
+                        fill="currentColor" 
+                        viewBox="0 0 24 24" >
+                    <path d="M9 15.59 4.71 11.3 3.3 12.71l5 5c.2.2.45.29.71.29s.51-.1.71-.29l11-11-1.41-1.41L9.02 15.59Z"></path>
+                    </svg>
+
+                <span>Resolved</span>
+            
+            </a>
+
+            <a href="#" 
+            class="menu-option" 
+            data-title="Closed"
+            data-tooltip="Closed">
+
+                    <svg  xmlns="http://www.w3.org/2000/svg" 
+                        width="24" 
+                        height="24"  
+                        fill="currentColor" 
+                        viewBox="0 0 24 24" >
+                    <path d="M12 22C6.49 22 2 17.51 2 12S6.49 2 12 2s10 4.49 10 10-4.49 10-10 10m0-18c-4.41 0-8 3.59-8 8s3.59 8 8 8 8-3.59 8-8-3.59-8-8-8"></path><path d="M10 16c-.26 0-.51-.1-.71-.29l-3-3L7.7 11.3l2.29 2.29 5.29-5.29 1.41 1.41-6 6c-.2.2-.45.29-.71.29Z"></path>
+                    </svg>
+                
+                    <span>Closed</span>
+            </a>
+
+        </nav>
+
+
+       
+
+    </aside>
+
+    <button type="button" class="create-ticket-button" id="create-ticket-button">
+    <svg xmlns="http://www.w3.org/2000/svg"
+         width="24"
+         height="24"
+         fill="currentColor"
+         viewBox="0 0 24 24">
+        <path d="M3 13h8v8h2v-8h8v-2h-8V3h-2v8H3z"></path>
+    </svg>
+
+    <span class="button-text">Create Ticket</span>
+    </button>
+
+    <main class="ticket-panel" id="ticket-panel" hidden>
+
+    <h2 id="panel-title">Maintenance Records</h2>
+
+    <table class="maintenance-table">
+        <thead>
+            <tr>
+                <th>Ticket ID</th>
+                <th>Room</th>
+                <th>Subject</th>
+                <th>Priority</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody id="ticket-list">
+            <!-- Ticket rows will appear here -->
+        </tbody>
+    </table>
+
+</main>
+
+
+
+    <div id="ticket-form-container" hidden>
+    <form id="ticket-form">
+        <h2>Create Maintenance Ticket</h2>
+
+        <label for="room-number">Room Number</label>
+        <input type="text" id="room-number" required>
+
+        <label for="problem">Problem Description</label>
+        <textarea id="problem" required></textarea>
+
+        <label for="priority">Priority</label>
+        <select id="priority" required>
+            <option value="Low">Low</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="High">High</option>
+        </select>
+
+        <button type="submit">Save Ticket</button>
+        <button type="button" id="cancel-ticket-button">Cancel</button>
+        <p id="ticket-form-message"></p>
+    </form>
+</div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="receptionist-dashboard.js"></script>
+
+    
+
+</body>
+</html>

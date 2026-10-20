@@ -1,0 +1,141 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+
+    background-color: #e0e0e0;
+
+
+.system-title{
+    font-family: Helvetica;
+    font-weight: bold;
+    font-size: 60px;
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+.description-caption{
+    font-family: Helvetica;
+    font-size: 24px;
+    margin-top: 5px;
+    margin-left: 40px;
+}
+
+.welcome-title{
+    font-family: Helvetica;
+    font-weight: bold;
+    font-size: 48px;
+    margin-top: 40px;
+    margin-left: 40px;
+}
+
+.welcome-caption{
+    font-family: Helvetica;
+    font-size: 21px;
+    margin-top: 5px;
+    margin-left: 40px;
+}
+
+.datetime{
+    text-align: center;
+}
+
+.time{
+     font-family: Helvetica;
+     font-weight: bold;
+     font-size: 36px;
+     margin-top: 100px;
+}
+
+.date{
+    font-family: Helvetica;
+    font-weight: lighter;
+    font-size: 21px;
+    margin-top: 10px;
+}
+
+.current-time{
+    font-family: Helvetica;
+    font-weight: normal;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.login-box{
+    width: 1000px;
+    height: 300px;
+    padding-top: 20px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background-color: #FFFFFF;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.login-role{
+    font-family: Helvetica;
+    font-weight: bold;
+    font-size: 21px;
+    text-align: left;
+    margin-top: 0px;
+    margin-left: 20px;
+}
+
+.login-caption{
+    font-family: Helvetica;
+    font-weight: lighter;
+    font-size: 14px;
+    text-align: left;
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+.login-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.receptionist-button {
+    width: 465px;
+    height: 180px;
+    font-family: Helvetica;
+    font-weight: lighter;
+    font-size: 16px;
+    color: #A5A9B4;
+    background-color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.manager-button {
+    width: 465px;
+    height: 180px;
+    font-family: Helvetica;
+    font-weight: lighter;
+    font-size: 16px;
+    color: #FFD54F;
+    background-color: #000000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.receptionist-button:hover {
+    opacity: 0.7;
+}
+
+.manager-button:hover {
+    opacity: 0.7;
+}
+
+}
+

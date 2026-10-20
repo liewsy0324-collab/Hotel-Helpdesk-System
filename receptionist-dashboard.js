@@ -105,18 +105,16 @@ await loadTickets();
 async function checkLogin() {
     const { data, error } = await supabaseClient.auth.getSession();
 
-    console.log("checkLogin session:", data.session);
-    console.log("checkLogin error:", error);
-
     if (error || !data.session) {
-        console.log("Redirecting to login page.");
-        window.location.href = "receptionist-login.html";
-    } else {
-        console.log("Login session confirmed. Staying on dashboard.");
+        window.location.replace("receptionist-login.html");
+        return false;
     }
+
+    console.log("User is logged in.");
+    return true;
 }
 
-checkLogin();
+
 
 
 createTicketButton.addEventListener("click", function () {
@@ -192,4 +190,6 @@ menuOptions.forEach(function (option) {
 
     
 });
+
+checkLogin();
 

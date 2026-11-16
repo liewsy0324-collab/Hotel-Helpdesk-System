@@ -1,0 +1,1837 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+
+    background-color: #e0e0e0;
+    position: relative;
+    isolation: isolate;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.15);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 70px;
+
+    width: calc(100% - 70px);
+
+    height: 82px;
+    background: linear-gradient(
+        to bottom,
+        rgba(251, 252, 250, 0.9) 0%,
+        rgba(251, 252, 250, 0.65) 50%,
+        rgba(238, 238, 238, 0.4) 100%
+    );
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border-bottom: 1px solid rgba(100, 100, 100, 0.15);
+
+
+    box-sizing: border-box;
+    
+    z-index: 1;
+    pointer-events: auto;
+
+    transition: left 0.3s ease, width 0.3s ease;
+}
+
+.page-title {
+    font-family: Helvetica;
+    font-size: 24px;
+    font-weight: bold;
+    position: fixed;
+    top: 30px;
+    left: 89px;
+    z-index: 2;
+    text-align: center;
+    
+    transition: left 0.3s ease;
+
+}
+
+body:has(.sidebar.expanded) .page-title {
+    left: 270px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 100vh;
+    background-color: #FFFFFF;
+    padding: 20px 10px;
+    overflow: visible;
+    transition: width 0.3s ease;
+    box-sizing: border-box;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    z-index: 4;
+    
+}
+
+.sidebar.expanded {
+    width: 250px;
+}
+
+
+
+
+body:has(.sidebar.expanded) .top-bar {
+    left: 250px;
+    width: calc(100% - 250px);
+}
+
+
+.sidebar.expanded .menu-option span {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.1s;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hamburger-button {
+    position: relative;
+    width: calc(100% + 20px);
+    height: 44px;
+    font-size: 26px;
+    color: #000000;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 19px;
+    margin: 0px 0 16px -10px;
+    border: none;
+    border-radius: 0px;
+    background-color: transparent;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+
+
+.hamburger-button:hover {
+    background-color: #e0e0e0;
+    border-radius: 5px;
+}
+
+
+
+.hamburger-button svg {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+.menu-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 12px 0px;
+    box-sizing: border-box;
+    color: #000000;
+    text-decoration: none;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 5px;
+    white-space: nowrap;
+
+    margin-left: -10px;
+    width: calc(100% + 20px);
+    padding-left: 10px;
+    padding-right: 10px;
+
+    position: relative;
+}
+
+
+.sidebar:not(.expanded) .menu-option {
+    justify-content: flex-start;
+    gap: 0;
+    padding-left: 9px;
+}
+
+
+
+.menu-option svg {
+    flex: 0 0 44px;
+    width: 24px;
+    height: 24px;
+}
+
+.menu-option span{
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease;
+}
+
+.selection-indicator {
+    margin-left: auto;
+}
+
+.menu-option:hover,
+.menu-option.active {
+    background-color: #e0e0e0;
+}
+
+.create-ticket-button {
+    position: fixed;
+    top: 85px;
+    left: 75px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 14px;
+    
+    border-radius: 6px;
+
+    background-color: #cbcbcb;
+    color: #000000;
+    border: 1px solid rgba(136, 136, 136, 0.08);
+    font-family: Helvetica;
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+    z-index: 3;
+    transition: left 0.3s ease;
+}
+
+.create-ticket-button svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.sidebar.expanded ~ .create-ticket-button {
+    left: 255px;
+}
+
+.main-content {
+    margin-left: 70px;
+    width: calc(100% - 70px);
+    box-sizing: border-box;
+    min-width: 0;
+    transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+.sidebar.expanded ~ .main-content {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+}
+
+.create-ticket-button:hover{
+    opacity: 0.7;
+}
+
+
+
+.ticket-panel {
+    position: fixed;
+    top: 130px;
+    left: 75px;
+    right: 6px;
+    bottom: 6px;
+
+    overflow: auto;
+    padding: 20px;
+    box-sizing: border-box;
+
+    background-color: #FFFFFF;
+    transition: background-color 0.3s ease;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+
+    z-index: 3;
+    font-family: Helvetica;
+
+    transition: left 0.3s ease, background-color 0.3s ease;
+}
+
+.ticket-panel h2 {
+    margin-bottom: 16px;
+    font-size: 20px;
+}
+
+.ticket-panel[hidden] {
+    display: none;
+}
+
+body:has(.sidebar.expanded) .ticket-panel {
+    left: 255px;
+}
+
+.maintenance-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.maintenance-table th,
+.maintenance-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #dddddd;
+}
+
+
+
+
+
+#ticket-form-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    max-width: 90%;
+    padding: 25px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+#ticket-form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#ticket-form-container h2 {
+    margin-top: 0;
+}
+
+#ticket-form-container input,
+#ticket-form-container textarea,
+#ticket-form-container select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+#ticket-form-container textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+#ticket-form-container button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#ticket-form-container button[type="submit"] {
+    background-color: #2563eb;
+    color: white;
+}
+
+#ticket-form-container button[type="button"] {
+    background-color: #e5e7eb;
+    color: #111827;
+}
+
+/*20-10-2026*/
+
+
+
+.logout-button {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+    padding: 0;
+
+    border: none;
+    border-radius: 5px;
+    background: transparent;
+    color: #000000;
+
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.logout-button:hover {
+    background-color: #e0e0e0;
+}
+
+.logout-button svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+
+}
+
+/*20-10-2026*/
+
+/* Sidebar tooltip: appear on the right */
+
+.sidebar:not(.expanded) .menu-option::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 8px);
+    transform: translateY(-50%);
+
+    padding: 6px 10px;
+    border-radius: 4px;
+    background-color: #333333;
+    color: #ffffff;
+
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    white-space: nowrap;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.sidebar:not(.expanded) .menu-option:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sidebar.expanded .menu-option::after {
+    display: none;
+}
+
+
+/* Logout tooltip: appear below */
+
+.logout-button::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+
+    padding: 6px 10px;
+    border-radius: 4px;
+    background-color: #333333;
+    color: #ffffff;
+
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    white-space: nowrap;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.logout-button:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+.view-button {
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.view-button:hover {
+    background-color: #333;
+}
+
+/* Ticket Details Window */
+#ticket-details-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 650px;
+    max-width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+
+    padding: 25px;
+    box-sizing: border-box;
+
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    z-index: 10;
+}
+
+#ticket-details-container[hidden] {
+    display: none;
+}
+
+
+
+#close-ticket-details svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+#close-ticket-details:hover {
+    background-color: #e0e0e0;
+    border-radius: 5px;
+}
+
+.ticket-details-info {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-family: Helvetica, Arial, sans-serif;
+    line-height: 2;
+}
+
+.form-section {
+    padding: 20px 0;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.form-section h3 {
+
+    margin-bottom: 40px;
+    font-size: 17px;
+}
+
+.form-section button {
+    padding: 8px 14px;
+    margin-right: 8px;
+
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.form-section button:hover {
+    background-color: #333;
+}
+
+.form-section button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.form-section button svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.ticket-details-info p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 8px 0;
+    line-height: 1.5;
+}
+
+.ticket-details-info p span {
+    text-align: right;
+}
+
+.ticket-details-header {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#close-ticket-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    background-color: transparent;
+    color: black;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+}
+
+body:has(#ticket-form-container:not([hidden]))::after,
+body:has(#ticket-details-container:not([hidden]))::after,
+body:has(#assignment-form-container:not([hidden]))::after,
+body:has(#work-consent-form-container:not([hidden]))::after,
+body:has(#completion-record-form-container:not([hidden]))::after{
+    content: "";
+    position: fixed;
+    inset: 0;
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    background-color: rgba(255, 255, 255, 0.15);
+
+    z-index: 9;
+    pointer-events: none;
+}
+
+/* Work Consent Form Window */
+#work-consent-form-container {
+    font-family: Helvetica;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 650px;
+    max-width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+
+    padding: 25px;
+    box-sizing: border-box;
+
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    z-index: 10;
+}
+
+#work-consent-form-container[hidden] {
+    display: none;
+}
+
+#work-consent-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#work-consent-form input,
+#work-consent-form textarea {
+    
+    
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+#work-consent-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+#work-consent-form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#work-consent-form-container h2 {
+    margin-bottom: 20px;
+}
+
+#work-consent-form-container p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.consent-input-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.consent-input-row label {
+    width: 150px;
+    flex-shrink: 0;
+}
+
+.consent-input-row input,
+.consent-input-row textarea {
+    flex: none;
+    margin-left: auto;
+}
+
+#work-consent-form input[type="text"],
+#work-consent-form textarea {
+    border: none;
+    border-bottom: 1px solid #000;
+    border-radius: 0;
+    outline: none;
+    background: transparent;
+    padding: 8px 4px;
+    box-shadow: none;
+}
+
+#work-consent-form textarea {
+    resize: vertical;
+}
+
+#consent-technician-name {
+    width: 250px;
+}
+
+.work-description-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.technician-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.technician-row label {
+    width: 150px;
+    flex-shrink: 0;
+}
+
+.technician-row input {
+    width: 250px;
+    flex: none;
+    margin-left: auto;
+}
+
+#consent-technician-name,
+.description-lines input {
+    direction: rtl;
+    unicode-bidi: plaintext;
+    text-align: right;
+}
+
+.work-description-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.work-description-row label {
+    width: 150px;
+    flex-shrink: 0;
+}
+
+.description-box {
+    width: 250px;
+    height: 75px;
+    margin-left: auto;
+    border: 1px solid black;
+    box-sizing: border-box;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+#consent-work-description {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0;
+    padding: 4px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: Helvetica;
+    font-size: 14px;
+    line-height: 22px;
+    direction: rtl;
+    unicode-bidi: plaintext;
+    text-align: right;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.form-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+#work-consent-form button[type="submit"] {
+    background: black;
+    color: white;
+}
+
+.consent-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.consent-label {
+    flex-shrink: 0;
+}
+
+.consent-info span:last-child {
+    text-align: right;
+    margin-left: auto;
+}
+
+.work-consent-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.work-consent-header h2 {
+    margin: 0;
+}
+
+.completion-record-header h2 {
+    margin: 0;
+}
+
+#close-work-consent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    background: transparent;
+    color: black;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+#close-work-consent:hover {
+    background-color: #e0e0e0;
+    border-radius: 5px;
+}
+
+#close-work-consent svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+#consent-date-time-row {
+    margin-top: 10px;
+}
+
+#consent-date-time-row[hidden] {
+    display: none !important;
+}
+
+/* Hide sender when hidden */
+#consent-sender-row[hidden],
+#completion-sender-row[hidden] {
+    display: none !important;
+}
+
+/* Completion Record Form Window */
+#completion-record-form-container {
+    font-family: Helvetica;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 650px;
+    max-width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+
+    padding: 25px;
+    box-sizing: border-box;
+
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    z-index: 10;
+}
+
+#completion-record-form-container[hidden] {
+    display: none;
+}
+
+#completion-record-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#completion-record-form input,
+#completion-record-form textarea {
+
+
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+#completion-record-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+#completion-record-form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#completion-record-form-container h2 {
+    margin-bottom: 20px;
+}
+
+#completion-record-form-container p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#completion-record-form input[type="text"],
+#completion-record-form textarea {
+    border: none;
+    border-bottom: 1px solid #000;
+    border-radius: 0;
+    outline: none;
+    background: transparent;
+    padding: 8px 4px;
+    box-shadow: none;
+}
+
+#completion-technician-name,
+.description-lines input {
+    direction: rtl;
+    unicode-bidi: plaintext;
+    text-align: right;
+}
+
+.work-description-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.work-description-row label {
+    width: 150px;
+    flex-shrink: 0;
+}
+
+.description-box {
+    width: 250px;
+    height: 75px;
+    margin-left: auto;
+    border: 1px solid black;
+    box-sizing: border-box;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+#consent-work-description {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0;
+    padding: 4px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: Helvetica;
+    font-size: 14px;
+    line-height: 22px;
+    direction: rtl;
+    unicode-bidi: plaintext;
+    text-align: right;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#completion-work-performed {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0;
+    padding: 4px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    resize: none;
+    font-family: Helvetica;
+    font-size: 14px;
+    line-height: 22px;
+    direction: rtl;
+    unicode-bidi: plaintext;
+    text-align: right;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.form-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+
+#completion-record-form button[type="submit"] {
+    background: black;
+    color: white;
+}
+
+.consent-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.consent-label {
+    flex-shrink: 0;
+}
+
+.consent-info span:last-child {
+    text-align: right;
+    margin-left: auto;
+}
+
+.completion-record-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.work-consent-header h2 {
+    margin: 0;
+}
+
+
+#close-completion-record {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    background: transparent;
+    color: black;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+#close-completion-record:hover {
+    background-color: #e0e0e0;
+    border-radius: 5px;
+}
+
+#close-completion-record svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+#completion-date-time-row[hidden] {
+    display: none !important;
+}
+
+#completion-time {
+    width: 120px;
+    padding: 8px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#time-picker {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    padding: 15px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    z-index: 9999;
+
+    left: 180px;
+    top: 300px;
+}
+
+#time-picker[hidden] {
+    display: none !important;
+}
+
+.time-picker-column {
+    width: 65px;
+}
+
+.time-picker-column p {
+    text-align: center;
+    font-weight: bold;
+}
+
+.time-picker-column div {
+    height: 150px;
+    overflow-y: auto;
+}
+
+.time-picker-column button {
+    display: block;
+    width: 100%;
+    padding: 7px;
+    border: none;
+    background: white;
+    cursor: pointer;
+}
+
+.time-picker-column button:hover,
+.time-picker-column button.selected {
+    background: #dceaff;
+}
+
+.time-picker-column button.selected {
+    background: #dceaff;
+    font-weight: bold;
+    border: 1px solid #4285f4;
+}
+
+#completion-time {
+    text-align: right !important;
+}
+
+#completion-time {
+    font-size: inherit;
+}
+
+#completion-sender-row{
+    margin-top: 10px;
+}
+
+#completion-date-time-row {
+    margin-top: 10px;
+}
+
+.create-ticket-button {
+    display: none;
+}
+
+#work-consent-form .consent-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    line-height: 1.5;
+    margin: 0;
+}
+
+#work-consent-form .consent-info span {
+    line-height: inherit;
+    vertical-align: middle;
+}
+
+#work-consent-form .consent-info > span:last-child {
+    position: relative;
+    top: 3px;
+}
+
+
+/* Manager Ticket Details - Assignment Section */
+
+.assignment-details-section {
+    width: 100%;
+    margin: 10px 0 20px;
+    font-family: Helvetica;
+}
+
+/* + Assign Button */
+
+.assignment-add-row {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 15px;
+}
+
+#add-assignment-button {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 16px;
+    font-family: Helvetica;
+    font-size: 13px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+#add-assignment-button:hover {
+    background-color: #333;
+}
+
+
+/* Assignment Information */
+
+.assignment-details-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.assignment-details-info p {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.assignment-details-info p span:first-child {
+    flex-shrink: 0;
+}
+
+.assignment-details-info p span:last-child {
+    margin-left: 20px;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+
+/* Ticket Action Buttons */
+
+.ticket-action-buttons {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.ticket-action-buttons button {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    padding: 10px;
+    position: relative;
+}
+
+.ticket-action-buttons button:hover {
+    background-color: #333;
+}
+
+.ticket-action-buttons button svg {
+    width: 17px;
+    height: 17px;
+
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    margin: 0;
+    flex-shrink: 0;
+}
+
+#view-work-consent,
+#view-completion-record {
+    text-align: left;
+    justify-content: flex-start;
+    padding-left: 40px;
+}
+
+/* Completion Record Information */
+
+
+#completion-record-form .consent-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    line-height: 1.5;
+    margin: 0;
+}
+
+
+#completion-record-form .consent-info span {
+    line-height: inherit;
+    vertical-align: middle;
+}
+
+
+#completion-record-form .consent-info > span:last-child {
+    position: relative;
+    top: 3px;
+}
+
+
+#completion-sender-row {
+    margin-top: 10px;
+}
+
+#consent-sender-row[hidden],
+#completion-sender-row[hidden] {
+    display: none !important;
+}
+
+/* Sender Information Visibility */
+
+#consent-sender-row:not([hidden]),
+#completion-sender-row:not([hidden]) {
+    display: flex !important;
+}
+
+/* Smaller Screens */
+
+@media (max-width: 600px) {
+
+    .ticket-action-buttons {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+/* Assign Maintenance Work Window */
+
+#assignment-form-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 500px;
+    max-width: 90%;
+    max-height: 85vh;
+    overflow: visible;
+
+    padding: 25px;
+    box-sizing: border-box;
+
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    font-family: Helvetica, Arial, sans-serif;
+    z-index: 11;
+}
+
+#assignment-form-container[hidden] {
+    display: none;
+}
+
+
+/* Window Header */
+
+.assignment-form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.assignment-form-header h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+
+/* Close Button */
+
+#close-assignment-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px 12px;
+
+    background-color: transparent;
+    color: black;
+    border: none;
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+#close-assignment-form:hover {
+    background-color: #e0e0e0;
+}
+
+
+/* Assignment Form */
+
+#assignment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+
+/* Input Rows */
+
+.assignment-input-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    width: 100%;
+}
+
+.assignment-input-row label {
+    width: 160px;
+    flex-shrink: 0;
+    font-size: 14px;
+    font-weight: lighter;
+}
+
+.assignment-input-row input {
+    width: 230px;
+    max-width: 100%;
+    padding: 9px 8px;
+
+    box-sizing: border-box;
+
+    border: none;
+    border-bottom: 1px solid #888;
+    border-radius: 0;
+
+    background-color: transparent;
+    font-family: Helvetica;
+    font-size: 14px;
+
+    outline: none;
+}
+
+.assignment-date-control input {
+    width: 206px;
+    flex: none;
+}
+
+
+
+.assignment-input-row input:focus {
+    border-bottom: 2px solid #2563eb;
+}
+
+
+/* Form Buttons */
+
+.assignment-form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.assignment-form-buttons button {
+    min-width: 90px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+#cancel-assignment {
+    background-color: #e5e7eb;
+    color: #111827;
+}
+
+#cancel-assignment:hover {
+    background-color: #d1d5db;
+}
+
+.assignment-form-buttons button[type="submit"] {
+    background-color: black;
+    color: white;
+}
+
+.assignment-form-buttons button[type="submit"]:hover {
+    background-color: #333;
+}
+
+
+/* Form Message */
+
+#assignment-form-message {
+    margin-top: 5px;
+    font-size: 13px;
+}
+
+
+/* Smaller Screens */
+
+@media (max-width: 500px) {
+
+    .assignment-input-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+
+    .assignment-input-row label {
+        width: 100%;
+    }
+
+    .assignment-input-row input {
+        width: 100%;
+    }
+
+}
+
+
+
+#close-assignment-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    background-color: transparent;
+    color: black;
+    border: none;
+     outline: none;
+    box-shadow: none;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+#close-assignment-form i {
+    font-size: 28px;
+}
+
+#close-assignment-form:hover {
+    background-color: #e0e0e0;
+    border-radius: 5px;
+}
+
+
+/* Assignment Date Picker */
+
+.assignment-date-control {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 230px;
+    margin-left: auto;
+}
+
+.assignment-date-control input {
+    width: 100%;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+.assignment-calendar-button {
+    position: absolute;
+    right: 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 30px;
+    height: 30px;
+
+    padding: 0;
+    background: transparent;
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+
+.assignment-calendar-button svg {
+    width: 20px;
+    height: 20px;
+    display: block;
+}
+
+/* Calendar Popup */
+
+#assignment-form .assignment-calendar {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+
+    width: 280px;
+    padding: 12px;
+
+    box-sizing: border-box;
+
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    z-index: 1000;
+    font-family: Helvetica;
+}
+
+#assignment-form .assignment-calendar[hidden] {
+    display: none !important;
+}
+
+.assignment-calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    margin-bottom: 12px;
+}
+
+#assignment-form .assignment-calendar-header button {
+    padding: 5px 8px;
+    background: white;
+    color: black;
+    border: none;
+    cursor: pointer;
+}
+
+.assignment-calendar-month,
+#assignment-form .assignment-calendar-year {
+    width: 100px;
+    height: 32px;
+
+    padding: 5px 8px;
+    box-sizing: border-box;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    background-color: white;
+    font-family: Helvetica;
+    font-size: 13px;
+}
+
+.assignment-calendar-weekdays,
+.assignment-calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    gap: 3px;
+}
+
+.assignment-calendar-weekdays {
+    margin-bottom: 8px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#assignment-form .assignment-calendar-days button {
+    padding: 7px 0;
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#assignment-form .assignment-calendar-days button:hover {
+    background: #e0e0e0;
+}
+
+#assignment-form .assignment-calendar-days button.selected {
+    background: #dceaff;
+    color: #000;
+    font-weight: bold;
+    border: 1px solid #4285f4;
+}
+
+
+
+/* Assignment Time Picker Position */
+
+.assignment-time-row {
+    position: relative;
+}
+
+#assignment-time-picker {
+    position: absolute;
+    top: calc(100% + 5px);
+
+    /* Align with the left edge of the input underline */
+    left: auto;
+    right: 0;
+
+    width: 230px;
+
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    padding: 10px;
+    box-sizing: border-box;
+
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+
+    z-index: 9999;
+}
+
+#assignment-time-picker[hidden] {
+    display: none !important;
+}
+
+#assignment-time-picker .time-picker-column {
+    flex: 1;
+    min-width: 0;
+}
+
+#assignment-time-picker .time-picker-column p {
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+    margin: 5px 0 8px;
+}
+
+#assignment-hour-options,
+#assignment-minute-options {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 160px;
+    overflow-y: auto;
+}
+
+#assignment-time-picker button {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    background-color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#assignment-time-picker button:hover,
+#assignment-time-picker button.selected {
+    background-color: #dceaff;
+}
+
+#assignment-time-picker button.selected {
+    font-weight: bold;
+    border: 1px solid #4285f4;
+}
+
+.assignment-calendar-days button.today {
+    background-color: #dceaff !important;
+    border: 1px solid #4285f4 !important;
+    font-weight: bold;
+}
+
+

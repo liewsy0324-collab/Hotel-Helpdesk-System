@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Administrator Dashboard</title>
+
+    <link rel="stylesheet" href="administrator-dashboard.css">
+</head>
+
+<body>
+
+    <header class="top-bar">
+
+        <h1 class="page-title">Administrator Dashboard</h1>
+
+        <button type="button"
+                class="logout-button"
+                id="logout-button"
+                aria-label="Logout"
+                data-tooltip="Logout">
+
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="24"
+                 height="24"
+                 fill="currentColor"
+                 viewBox="0 0 24 24">
+
+                <path d="M15 11H8v2h7v4l6-5-6-5z"></path>
+                <path d="M5 21h7v-2H5V5h7V3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2"></path>
+
+            </svg>
+
+        </button>
+
+    </header>
+
+
+    <main class="main-content">
+
+        <section class="user-panel">
+
+            <div class="panel-heading">
+
+                <div>
+                    <h2>User Accounts</h2>
+                    <p>View and manage system user accounts.</p>
+                </div>
+
+                <button type="button" class="add-user-button" id="add-user-button">
+    <span class="plus-symbol">+</span>
+    Add User
+</button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table class="user-table">
+
+                    <thead>
+                        <tr>
+                            <th>Employee Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Account Status</th>
+                            <th>Date Created</th>
+                            <th>Edit</th>
+                            <th>Actions</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="user-table-body">
+
+                        <tr>
+                            <td colspan="7" class="empty-message">
+                                User accounts will appear here.
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+        <div class="modal-overlay" id="add-user-modal" hidden>
+        <section class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <div class="modal-heading">
+                <h2 id="modal-title">Add User</h2>
+                <button type="button" class="close-modal-button" id="close-modal-button" aria-label="Close">&times;</button>
+            </div>
+        
+          
+
+
+
+            <form id="add-user-form">
+    <div class="form-group">
+        <label for="user-name">Employee Name</label>
+        <input
+            type="text"
+            id="user-name"
+            name="employee_name"
+            placeholder="Enter employee name"
+            required
+        >
+    </div>
+
+    <div class="form-group">
+        <label for="user-email">Email Address</label>
+        <input
+            type="email"
+            id="user-email"
+            name="email"
+            placeholder="Enter email address"
+            required
+        >
+    </div>
+
+    <div class="form-group">
+        <label for="user-password">Password</label>
+        <input
+            type="password"
+            id="user-password"
+            name="password"
+            placeholder="Enter password"
+            minlength="8"
+            required
+        >
+    </div>
+
+    <p class="form-message" id="form-message" aria-live="polite"></p>
+
+    <div class="modal-actions">
+        <button type="button" class="cancel-button" id="cancel-modal-button">
+            Cancel
+        </button>
+        <button type="submit" class="create-user-button">
+            Create Account
+        </button>
+    </div>
+</form>
+        </section>
+    </div>
+
+      <div class="modal-overlay" id="edit-user-modal" hidden>
+            <section class="modal-content" role="dialog" aria-modal="true" aria-labelledby="edit-modal-title">
+
+                <div class="modal-heading">
+                    <h2 id="edit-modal-title">Edit User</h2>
+                    <button type="button" class="close-modal-button" id="close-edit-modal-button" aria-label="Close">&times;</button>
+                </div>
+
+
+
+        
+
+                <form id="edit-user-form">
+                    <input type="hidden" id="edit-user-id">
+
+                    <div class="form-group">
+                        <label for="edit-user-name">Employee Name</label>
+                        <input type="text" id="edit-user-name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-user-email">Email Address</label>
+                        <input type="email" id="edit-user-email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-user-password">New Password</label>
+                        <input
+                            type="password"
+                            id="edit-user-password"
+                            placeholder="Leave blank to keep current password"
+                            minlength="8"
+                        >
+                    </div>
+
+                    <p class="form-message" id="edit-form-message" aria-live="polite"></p>
+
+                    <div class="modal-actions">
+                        <button type="button" class="cancel-button" id="cancel-edit-modal-button">
+                            Cancel
+                        </button>
+                        <button type="submit" class="create-user-button" id="save-edit-user-button">
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+
+            </section>
+        </div>
+
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="administrator-dashboard.js"></script>
+
+</body>
+</html>

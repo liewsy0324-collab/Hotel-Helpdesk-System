@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Manager Login Page</title>
+
+    <link rel="stylesheet" href="hotel-manager-login.css">
+</head>
+
+<body>
+
+    <div class="login-box">
+
+        <form id="login-form">
+
+    <h1 class="hotel-manager-login-title">Hotel Manager Login</h1>
+
+
+    <div class="form-group">
+
+        <label for="email" class="username-label">Email</label>
+        <input type="email" id="email" class="form-control" required>
+
+    </div>
+
+
+    <div class="form-group">
+
+        <label for="password" class="password-label">Password</label>
+        <input type="password" id="password" class="form-control" required>
+
+    </div>
+
+
+    <input type="submit" class="submit-button" value="Login">
+
+    <p id="login-message"></p>
+
+        </form>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="hotel-manager-login.js"></script>
+
+</body>
+</html>
